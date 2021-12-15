@@ -10,6 +10,7 @@ import id.ridhwan.sulthoni.marsphoto.network.MarsPhoto
 import id.ridhwan.sulthoni.marsphoto.overview.MarsApiStatus
 import id.ridhwan.sulthoni.marsphoto.overview.PhotoGridAdapter
 
+//ini digunakan untuk memperbarui data yang ditampilkan pada recyclerview
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView,
                      data: List<MarsPhoto>?) {
@@ -17,6 +18,7 @@ fun bindRecyclerView(recyclerView: RecyclerView,
     adapter.submitList(data)
 }
 
+//menggunakan libery coli untuk memuat gambar dengan url ke dalam imageview
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
@@ -28,6 +30,12 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
+/**
+ * adaptor ini menampilkan MarsApiStatus dari permintaan jaringan dalam menampilkan gambar
+ * terdapat beberapa saat terjadi, ketika sedang loading maka akan menampilkan loading_animation
+ * ketika permintaan terjadi error maka akan menampilkan gambar rusak
+ * dan terakhir ketika permintaan done maka akan menyembunyikan tampilan gambar
+ */
 @BindingAdapter("marsApiStatus")
 fun bindStatus(statusImageView: ImageView,
                status: MarsApiStatus?) {
